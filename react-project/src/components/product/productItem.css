@@ -12,3 +12,20 @@
   margin-bottom: 16px;
   object-fit: cover;
 }
+
+.product__title {
+  font-size: 18px;
+}
+
+.product__price {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.product__description {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px;
+}

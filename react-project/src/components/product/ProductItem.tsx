@@ -25,8 +25,11 @@ class ClassProduct extends React.Component<IProps> {
       <div className="product">
         <div className="product__content">
           <img className="product__image" src={post.image} alt={post.title} />
-          <div className="product__title">{post.id}</div>
-          <h5 className="product__title">{post.title}</h5>
+          <div className="product__description">
+            <div className="product__title">{post.title}</div>
+            <h5 className="product__price">Price: €{post.price}</h5>
+            <div className="product__title">Category: {post.category}</div>
+          </div>
         </div>
       </div>
     );

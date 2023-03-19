@@ -1,0 +1,20 @@
+.search-input {
+    border: 3px solid #43494d;
+    border-radius: 4px;
+    color: inherit;
+    font: inherit;
+    padding: 5px 15px;
+    width: 100px;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.search-input__wrapper {
+    position: relative;
+}
+
+.search-input__svg {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+}
