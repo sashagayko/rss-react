@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
+import SearchInput from '../searchInput/searchInput';
 
 class Header extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class Header extends React.Component {
         <Link to="/about" className="nav-link">
           About
         </Link>
+        <SearchInput />
       </header>
     );
   }
