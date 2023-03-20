@@ -3,18 +3,29 @@ import { Link } from 'react-router-dom';
 import './header.css';
 import SearchInput from '../searchInput/searchInput';
 
-class Header extends React.Component {
+interface IProps {
+  title: string;
+  page: React.ReactNode;
+}
+
+class Header extends React.Component<IProps> {
   render() {
+    const title = this.props.title;
+    const page = this.props.page;
     return (
-      <header className="header">
-        <Link to="/" className="nav-link">
-          GO HOME
-        </Link>
-        <Link to="/about" className="nav-link">
-          About
-        </Link>
-        <SearchInput />
-      </header>
+      <>
+        <header className="header">
+          <div className="nav-link">This is {title} page</div>
+          <Link to="/" className="nav-link">
+            GO HOME
+          </Link>
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
+          <SearchInput />
+        </header>
+        <main>{page}</main>
+      </>
     );
   }
 }

@@ -12,9 +12,12 @@ class SearchInput extends React.Component<unknown, { input: string }> {
     this.setState({ input: localStorage.getItem('searchInput') || '' });
   }
 
+  componentWillUnmount() {
+    localStorage.setItem('searchInput', this.state.input);
+  }
+
   save(e: ChangeEvent<HTMLInputElement>) {
     const target = e.target!.value;
-    localStorage.setItem('searchInput', target.toString());
     this.setState({ input: target });
   }
   render(): React.ReactNode {

@@ -10,11 +10,10 @@ export class App extends React.Component {
   render() {
     return (
       <>
-        <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Header page={<Home />} title={'Home'} />} />
+          <Route path="/about" element={<Header page={<About />} title={'About'} />} />
+          <Route path="*" element={<Header page={<NotFound />} title={'Not Found'} />} />
         </Routes>
       </>
     );
