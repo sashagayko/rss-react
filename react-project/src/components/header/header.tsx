@@ -7,7 +7,6 @@ interface IProps {
   page: React.ReactNode;
 }
 
-alert('hello');
 class Header extends React.Component<IProps> {
   render() {
     const title = this.props.title;
