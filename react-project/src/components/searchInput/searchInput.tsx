@@ -18,6 +18,7 @@ class SearchInput extends React.Component<unknown, { input: string }> {
 
   save(e: ChangeEvent<HTMLInputElement>) {
     const target = e.target!.value;
+    console.log(target);
     this.setState({ input: target });
   }
   render(): React.ReactNode {

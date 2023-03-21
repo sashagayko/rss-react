@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "useDefineForClassFields": true,
     "lib": ["dom", "esnext", "dom.iterable"],
     "jsx": "react",
+    "allowJs": false,
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -17,5 +19,6 @@
     "noEmit": true,
     
   },
-  "include": ["./src/**/*", "styled.d.ts"]
+  "include": ["src", "setupTests.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

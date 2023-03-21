@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
@@ -13,7 +13,8 @@ export class App extends React.Component {
         <Routes>
           <Route path="/" element={<Header page={<Home />} title={'Home'} />} />
           <Route path="/about" element={<Header page={<About />} title={'About'} />} />
-          <Route path="*" element={<Header page={<NotFound />} title={'Not Found'} />} />
+          <Route path="/404" element={<Header page={<NotFound />} title={'Not Found'} />} />
+          <Route path="*" element={<Navigate replace to="/404" />} />
         </Routes>
       </>
     );
