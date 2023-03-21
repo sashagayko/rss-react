@@ -5,11 +5,8 @@ class SearchInput extends React.Component<unknown, { input: string }> {
   constructor(props: never) {
     super(props);
     this.state = {
-      input: '',
+      input: localStorage.getItem('searchInput') || '',
     };
-  }
-  componentDidMount() {
-    this.setState({ input: localStorage.getItem('searchInput') || '' });
   }
 
   componentWillUnmount() {
@@ -18,9 +15,9 @@ class SearchInput extends React.Component<unknown, { input: string }> {
 
   save(e: ChangeEvent<HTMLInputElement>) {
     const target = e.target!.value;
-    console.log(target);
     this.setState({ input: target });
   }
+
   render(): React.ReactNode {
     return (
       <div className="search-input__wrapper">

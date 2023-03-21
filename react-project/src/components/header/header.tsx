@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
-import SearchInput from '../searchInput/searchInput';
 
 interface IProps {
   title: string;
   page: React.ReactNode;
 }
 
+alert('hello');
 class Header extends React.Component<IProps> {
   render() {
     const title = this.props.title;
@@ -22,7 +22,6 @@ class Header extends React.Component<IProps> {
           <Link to="/about" className="nav-link">
             About
           </Link>
-          <SearchInput />
         </header>
         <main>{page}</main>
       </>
