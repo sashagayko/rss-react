@@ -21,6 +21,9 @@ class Header extends React.Component<IProps> {
           <Link to="/about" className="nav-link">
             About
           </Link>
+          <Link to="/forms" className="nav-link">
+            Forms
+          </Link>
         </header>
         <main>{page}</main>
       </>

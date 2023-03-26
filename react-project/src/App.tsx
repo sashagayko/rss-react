@@ -5,6 +5,7 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import Header from './components/header/header';
 import './App.css';
+import Forms from './pages/Forms';
 
 export class App extends React.Component {
   render() {
@@ -13,6 +14,7 @@ export class App extends React.Component {
         <Routes>
           <Route path="/" element={<Header page={<Home />} title={'Home'} />} />
           <Route path="/about" element={<Header page={<About />} title={'About'} />} />
+          <Route path="/forms" element={<Header page={<Forms />} title={'Forms'} />} />
           <Route path="/404" element={<Header page={<NotFound />} title={'Not Found'} />} />
           <Route path="*" element={<Navigate replace to="/404" />} />
         </Routes>
