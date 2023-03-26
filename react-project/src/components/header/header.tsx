@@ -7,9 +7,6 @@ interface IProps {
   page: React.ReactNode;
 }
 
-alert(
-  'hello), please note that the componentWillUnmount() method is called before removing the component from the DOM, (saving from input to LocalStorage will occur when switching between the Home and About pages, and not when reloading the page. Thank you for your attention)'
-);
 class Header extends React.Component<IProps> {
   render() {
     const title = this.props.title;

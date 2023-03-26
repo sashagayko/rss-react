@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import './searchInput.css';
+import classes from './searchInput.module.css';
 
 class SearchInput extends React.Component<unknown, { input: string }> {
   constructor(props: never) {
@@ -20,15 +20,15 @@ class SearchInput extends React.Component<unknown, { input: string }> {
 
   render(): React.ReactNode {
     return (
-      <div className="search-input__wrapper">
+      <div className={classes['search-input__wrapper']}>
         <input
-          className="search-input"
+          className={classes['search-input']}
           type="text"
           onChange={(e) => this.save(e)}
           value={this.state.input}
         />
         <svg
-          className="search-input__svg"
+          className={classes['search-input__svg']}
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
