@@ -25,4 +25,16 @@ describe('App', () => {
       })
     ).toHaveTextContent('Not Found');
   });
+  it('Renders forms path', () => {
+    render(
+      <MemoryRouter initialEntries={['/forms']}>
+        <App />
+      </MemoryRouter>
+    );
+    expect(
+      screen.getByRole('heading', {
+        level: 1,
+      })
+    ).toHaveTextContent('Forms');
+  });
 });
