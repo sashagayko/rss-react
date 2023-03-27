@@ -1,16 +1,17 @@
-import React from 'react';
-import GenderInput from '../components/Forms/GenderInput/GenderInput';
+import React, { FormEvent } from 'react';
+import UsersList from '../components/Forms/UsersList/UsersList';
 
-// interface userCards<> {
-//   nameInput: string;
-//   birthday: string;
-//   profilePicture: string;
-//   gender: string;
-//   countries: string;
-// }
-// interface state {
-//   userCards: userCards;
-// }
+interface userCards {
+  name: string;
+  birthday: string;
+  profilePicture: string;
+  gender: string;
+  countries: string;
+}
+
+interface state {
+  userCards: userCards[];
+}
 
 class Forms extends React.Component {
   nameInput: React.RefObject<HTMLInputElement>;
@@ -18,7 +19,7 @@ class Forms extends React.Component {
   profilePicture: React.RefObject<HTMLInputElement>;
   genderMale: React.RefObject<HTMLInputElement>;
   genderFemale: React.RefObject<HTMLInputElement>;
-  countries: React.RefObject<HTMLInputElement>;
+  countries: React.RefObject<HTMLSelectElement>;
   state = { userCards: [] };
   constructor(props: never) {
     super(props);
@@ -30,9 +31,9 @@ class Forms extends React.Component {
     this.countries = React.createRef();
   }
 
-  handleSubmit = (e: SubmitEvent) => {
+  handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    this.setState((state) => ({
+    this.setState((state: state) => ({
       userCards: [
         ...state.userCards,
         {
@@ -46,37 +47,35 @@ class Forms extends React.Component {
         },
       ],
     }));
-    console.log(this.state);
-    console.log(this.profilePicture.current!.files![0]);
     setTimeout(() => {
       const target = e.target as HTMLFormElement;
       target?.reset();
     }, 0);
-  };
+  }
 
   render(): React.ReactNode {
     return (
       <>
-        {this.state.userCards.map((user: string) => (
-          <div key={user.name}>
-            {user!.name} {user!.birthday} {user!.gender} {user!.countries}{' '}
-            <img src={user!.profilePicture}></img>
-          </div>
-        ))}
         <h1>Forms</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(e) => this.handleSubmit(e)} className="form">
           <label htmlFor="name">Name</label>
-          <input type="text" ref={this.nameInput} placeholder="Name" />
+          <input type="text" ref={this.nameInput} placeholder="Name" required />
           <label htmlFor="birthday">birthday</label>
-          <input type="date" ref={this.birthday} placeholder="birthday" />
+          <input type="date" ref={this.birthday} placeholder="birthday" required />
           <label htmlFor="profilePicture">profile picture</label>
-          <input type="file" ref={this.profilePicture} placeholder="profile picture" />
-          {/* <GenderInput props={this.state}></GenderInput> */}
+          <input type="file" ref={this.profilePicture} placeholder="profile picture" required />
           <div>
-            gender
+            gender:
             <input type="radio" id="male" name="gender" value="male" ref={this.genderMale} />
             <label htmlFor="male">male</label>
-            <input type="radio" id="female" name="gender" value="female" ref={this.genderFemale} />
+            <input
+              type="radio"
+              id="female"
+              name="gender"
+              value="female"
+              ref={this.genderFemale}
+              defaultChecked
+            />
             <label htmlFor="female">female</label>
           </div>
           <select ref={this.countries}>
@@ -85,9 +84,14 @@ class Forms extends React.Component {
             <option value="Ukraine">Ukraine</option>
           </select>
           <label htmlFor="I consent to my personal data">I consent to my personal data</label>
-          <input type="checkbox" value="I consent to my personal data" />
+          <input type="checkbox" value="I consent to my personal data" required />
           <input type="submit" value="Submit" />
         </form>
+        {this.state.userCards.map((user, index: number) => (
+          <div key={index}>
+            <UsersList props={user} />
+          </div>
+        ))}
       </>
     );
   }
