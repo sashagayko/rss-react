@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import products from '../../products.json';
-import ProductItem from '../product/ProductItem';
+import ProductItem from './ProductItem';
 import React from 'react';
 
 describe('ProductItem', () => {
