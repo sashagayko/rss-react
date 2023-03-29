@@ -1,4 +1,5 @@
 import React, { FormEvent } from 'react';
+import { SuccessMessage } from '../components/SuccessMessage/SuccessMessage';
 import UsersList from '../components/Forms/UsersList/UsersList';
 
 interface userCards {
@@ -20,7 +21,7 @@ class Forms extends React.Component {
   genderMale: React.RefObject<HTMLInputElement>;
   genderFemale: React.RefObject<HTMLInputElement>;
   countries: React.RefObject<HTMLSelectElement>;
-  state = { userCards: [] };
+  state = { userCards: [], isModalOpen: false };
   constructor(props: never) {
     super(props);
     this.nameInput = React.createRef();
@@ -34,6 +35,7 @@ class Forms extends React.Component {
   handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     this.setState((state: state) => ({
+      isModalOpen: true,
       userCards: [
         ...state.userCards,
         {
@@ -51,6 +53,11 @@ class Forms extends React.Component {
       const target = e.target as HTMLFormElement;
       target?.reset();
     }, 0);
+    setTimeout(() => {
+      this.setState(() => ({
+        isModalOpen: false,
+      }));
+    }, 2000);
   }
 
   render(): React.ReactNode {
@@ -92,6 +99,7 @@ class Forms extends React.Component {
             <UsersList props={user} />
           </div>
         ))}
+        {this.state.isModalOpen && <SuccessMessage />}
       </>
     );
   }

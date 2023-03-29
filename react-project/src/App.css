@@ -19,7 +19,7 @@ h1 {
   gap: 15px;
   align-items: center;
   font-size: 24px;
-
+  position: relative;
 }
 
 .form input,
