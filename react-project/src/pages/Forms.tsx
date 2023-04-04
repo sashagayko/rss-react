@@ -4,7 +4,6 @@ import { SuccessMessage } from '../components/SuccessMessage/SuccessMessage';
 import UsersList from '../components/Forms/UsersList/UsersList';
 import { ErrorMessage } from '../components/ErrorMessage/ErrorMessage';
 
-
 interface userCards {
   name: string;
   birthday: string;
@@ -14,36 +13,19 @@ interface userCards {
   agree: boolean;
 }
 
-interface invalidForm {
-  name: boolean;
-  birthday: boolean;
-  profilePicture: boolean;
-  gender: boolean;
-  agree: boolean;
-}
-
 interface state {
   userCards: userCards[];
   isModalOpen: boolean;
-  invalidForm: invalidForm;
 }
 
-// nameInput: React.RefObject<HTMLInputElement>;
-// birthday: React.RefObject<HTMLInputElement>;
-// profilePicture: React.RefObject<HTMLInputElement>;
-// genderMale: React.RefObject<HTMLInputElement>;
-// genderFemale: React.RefObject<HTMLInputElement>;
-// countries: React.RefObject<HTMLSelectElement>;
-// agree: React.RefObject<HTMLInputElement>;
-
 export function Forms() {
-  alert('Привет проверяющий, к сожалению я не успел доделать, буду очень благодарен если дашь мне еще немного времени :)')
-  const [state, setState] = useState();
+  const [state, setState] = useState([]);
 
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
   // state = {
@@ -56,19 +38,10 @@ export function Forms() {
   //     agree: false,
   //   },
   // };
-  // constructor(props: never) {
-  //   super(props);
-  //   this.nameInput = React.createRef();
-  //   this.birthday = React.createRef();
-  //   this.profilePicture = React.createRef();
-  //   this.genderMale = React.createRef();
-  //   this.genderFemale = React.createRef();
-  //   this.countries = React.createRef();
-  //   this.agree = React.createRef();
-  // }
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (data: userCards) => {
+    setState([...state, data]);
+    // console.log('state', state);
 
     // this.setState(() => ({
     //   invalidForm: {
@@ -120,7 +93,7 @@ export function Forms() {
       <h1>Forms</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="nameInput">Name</label>
           <input
             type="text"
             {...register('nameInput', {
@@ -130,12 +103,7 @@ export function Forms() {
             placeholder="Name"
           />
           {errors?.nameInput && (
-            <ErrorMessage
-              text={
-                errors?.nameInput?.message ||
-                'The name must start with uppercase and must not be empty'
-              }
-            />
+            <ErrorMessage text={'The name must start with uppercase and must not be empty'} />
           )}
         </div>
         <div>
@@ -162,55 +130,53 @@ export function Forms() {
         </div>
         gender:
         <div>
-          <label htmlFor="profilePicture">profile Picture</label>
-          <input
-            type="radio" 
-            {...register('profilePicture', {
-              required: 'true',
-            })}
-            placeholder="profile Picture"
-          />
-          {errors?.profilePicture && <ErrorMessage text={'Add file'} />}
-        </div>
-        {/* <div>
-          <label htmlFor="profilePicture">profile Picture</label>
+          <label htmlFor="gender">male</label>
           <input
             type="radio"
-            {...register('profilePicture', {
-              required: 'true',
+            value="male"
+            {...register('gender', {
+              required: 'Select gender',
             })}
-            placeholder="profile Picture"
           />
-          {errors?.profilePicture && <ErrorMessage text={'Add file'} />}
+          {errors?.gender && <ErrorMessage text={'Select gender'} />}
         </div>
-          <input type="radio" id="male" name="gender" value="male" ref={this.genderMale} />
-          <label htmlFor="male">male</label>
+        <div>
+          <label htmlFor="gender">female</label>
           <input
             type="radio"
-            id="female"
-            name="gender"
             value="female"
-            ref={this.genderFemale}
-            defaultChecked
+            {...register('gender', {
+              required: 'Select gender',
+            })}
           />
-          <label htmlFor="female">female</label>
+          {errors?.gender && <ErrorMessage text={'Select gender'} />}
         </div>
-        <select ref={this.countries}>
+        <div>
+          <label htmlFor="agreement">I consent to my personal data</label>
+          <input
+            type="checkbox"
+            {...register('agreement', {
+              required: 'Accept the agreement!',
+            })}
+          />
+          {errors?.agreement && <ErrorMessage text={'Accept the agreement!'} />}
+        </div>
+        <span>countries</span>
+        <select
+          {...register('countries', {
+            required: 'Select your countries',
+          })}
+        >
           <option value="Belarus">Belarus</option>
           <option value="Russia">Russia</option>
           <option value="Ukraine">Ukraine</option>
         </select>
-        <label htmlFor="agree">I consent to my personal data</label>
-        <input ref={this.agree} type="checkbox" value="I consent to my personal data" />
-        {this.state.invalidForm.agree && <ErrorMessage text={'Choose checkbox'} />} */}
+        {errors?.countries && <ErrorMessage text={'Select your countries'} />}
         <input type="submit" value="Submit" />
       </form>
-      {/* {this.state.userCards.map((user, index: number) => (
-        <div key={index}>
-          <UsersList props={user} />
-        </div>
-      ))}
-      {this.state.isModalOpen && <SuccessMessage />} */}
+
+      <UsersList props={state} />
+      {/* {state.isModalOpen && <SuccessMessage />} */}
     </>
   );
 }

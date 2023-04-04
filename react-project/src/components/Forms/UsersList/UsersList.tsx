@@ -11,18 +11,31 @@ interface User {
   };
 }
 
-export default function UsersList(user: User) {
+export default function UsersList(props) {
+  console.log(props.props);
+
   return (
-    <div className="users-list">
-      <div className="user">
-        <img src={user.props!.profilePicture}></img>
-        <div>
-          <div>Username: {user.props!.name}</div>
-          <div>Birthday: {user.props!.birthday}</div>
-          <div>Gender: {user.props!.gender}</div>
-          <div>Countries: {user.props!.countries}</div>
+    <>
+      {props.props.map((el) => (
+        <div className="users-list" key={el}>
+          <div className="user">
+            <img src={el.profilePicture}></img>
+            <div>
+              <div>Username: {el.nameInput}</div>
+
+              <div>Birthday: {el.birthday}</div>
+              <div>Gender: {el.gender}</div>
+              <div>Countries: {el.countries}</div>
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
+    </>
+  );
+
+  return (
+    <div>
+      <div key={el.nameInput}>{el.nameInput}</div>
     </div>
   );
 }
