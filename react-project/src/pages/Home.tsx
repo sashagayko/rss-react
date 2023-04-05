@@ -3,9 +3,6 @@ import React from 'react';
 import ProductList from '../components/ProductsList/ProductsList';
 
 export function Home() {
-  alert(
-    'Привет проверяющий, к сожалению я не успел доделать, буду очень благодарен если дашь мне еще немного времени :)'
-  );
   return (
     <div>
       <SearchInput />
