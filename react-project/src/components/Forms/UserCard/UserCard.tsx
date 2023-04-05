@@ -1,13 +1,5 @@
 import React from 'react';
-
-interface userCards {
-  nameInput: string;
-  birthday: string;
-  profilePicture: string;
-  gender: string;
-  countries: string;
-  agreement: boolean;
-}
+import { userCards } from '../../../types';
 
 export default function UserCard({
   birthday,
@@ -19,7 +11,7 @@ export default function UserCard({
   return (
     <div className="users-list" key={nameInput}>
       <div className="user">
-        <img src={profilePicture}></img>
+        <img src={window.URL.createObjectURL(profilePicture[0])}></img>
         <div>
           <div>Username: {nameInput}</div>
 

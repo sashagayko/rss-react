@@ -1,18 +1,10 @@
 import React from 'react';
 import './UsersList.css';
 import UserCard from '../UserCard/UserCard';
+import { userCards } from '../../../types';
 
 interface Users {
   props: userCards[];
-}
-
-interface userCards {
-  nameInput: string;
-  birthday: string;
-  profilePicture: string;
-  gender: string;
-  countries: string;
-  agreement: boolean;
 }
 
 export default function UsersList(Users: Users) {

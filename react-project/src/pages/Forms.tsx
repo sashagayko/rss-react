@@ -3,15 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { SuccessMessage } from '../components/SuccessMessage/SuccessMessage';
 import UsersList from '../components/Forms/UsersList/UsersList';
 import { ErrorMessage } from '../components/ErrorMessage/ErrorMessage';
-
-interface userCards {
-  nameInput: string;
-  birthday: string;
-  profilePicture: string;
-  gender: string;
-  countries: string;
-  agreement: boolean;
-}
+import { userCards } from '../types';
 
 export function Forms() {
   const [state, setState] = useState<userCards[]>([]);
@@ -21,7 +13,6 @@ export function Forms() {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm<userCards>();
 
   const onSubmit: SubmitHandler<userCards> = (data: userCards): void => {
@@ -39,8 +30,7 @@ export function Forms() {
     ]);
     setIsModalOpen(true);
     setTimeout(() => {
-      setIsModalOpen(true);
-      reset();
+      setIsModalOpen(false);
     }, 2000);
   };
 
