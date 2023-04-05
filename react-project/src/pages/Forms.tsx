@@ -13,6 +13,7 @@ export function Forms() {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<userCards>();
 
   const onSubmit: SubmitHandler<userCards> = (data: userCards): void => {
@@ -31,6 +32,7 @@ export function Forms() {
     setIsModalOpen(true);
     setTimeout(() => {
       setIsModalOpen(false);
+      reset();
     }, 2000);
   };
 
