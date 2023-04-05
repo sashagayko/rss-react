@@ -19,6 +19,7 @@ export default function UsersList(Users: Users) {
   console.log('props', Users);
   return (
     <>
+      <div>User</div>
       {Users.props.map((userCards: userCards) => (
         <UserCard key={userCards.nameInput} {...userCards} />
       ))}

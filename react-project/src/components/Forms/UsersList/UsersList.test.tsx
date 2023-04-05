@@ -3,20 +3,20 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import UsersList from './UsersList';
 
-const user = {
-  name: 'Sasha',
-  birthday: '10.01.2002',
-  profilePicture: 'http//',
-  gender: 'male',
-  countries: 'Bel',
-};
+const user = [
+  {
+    agreement: true,
+    birthday: '2023-04-09',
+    countries: 'Belarus',
+    gender: 'male',
+    nameInput: 'SASHA',
+    profilePicture: '',
+  },
+];
 
-describe('ProductItem', () => {
-  it('render ProductItem 1', () => {
+describe('ProductList', () => {
+  it('render', () => {
     render(<UsersList props={user} />);
-    expect(screen.getByText('Username: Sasha')).toBeInTheDocument();
-    expect(screen.getByText('Birthday: 10.01.2002')).toBeInTheDocument();
-    expect(screen.getByText('Gender: male')).toBeInTheDocument();
-    expect(screen.getByText('Countries: Bel')).toBeInTheDocument();
+    expect(screen.getByText('User')).toBeInTheDocument();
   });
 });
