@@ -1,41 +1,27 @@
 import React from 'react';
 import './UsersList.css';
+import UserCard from '../UserCard/UserCard';
 
-interface User {
-  props: {
-    name: string;
-    birthday: string;
-    profilePicture: string;
-    gender: string;
-    countries: string;
-  };
+interface Users {
+  props: userCards[];
 }
 
-export default function UsersList(props) {
-  console.log(props.props);
+interface userCards {
+  nameInput: string;
+  birthday: string;
+  profilePicture: string;
+  gender: string;
+  countries: string;
+  agreement: boolean;
+}
 
+export default function UsersList(Users: Users) {
+  console.log('props', Users);
   return (
     <>
-      {props.props.map((el) => (
-        <div className="users-list" key={el}>
-          <div className="user">
-            <img src={el.profilePicture}></img>
-            <div>
-              <div>Username: {el.nameInput}</div>
-
-              <div>Birthday: {el.birthday}</div>
-              <div>Gender: {el.gender}</div>
-              <div>Countries: {el.countries}</div>
-            </div>
-          </div>
-        </div>
+      {Users.props.map((userCards: userCards) => (
+        <UserCard key={userCards.nameInput} {...userCards} />
       ))}
     </>
-  );
-
-  return (
-    <div>
-      <div key={el.nameInput}>{el.nameInput}</div>
-    </div>
   );
 }

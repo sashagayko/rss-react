@@ -1,92 +1,49 @@
-import React, { FormEvent, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { SuccessMessage } from '../components/SuccessMessage/SuccessMessage';
 import UsersList from '../components/Forms/UsersList/UsersList';
 import { ErrorMessage } from '../components/ErrorMessage/ErrorMessage';
 
 interface userCards {
-  name: string;
+  nameInput: string;
   birthday: string;
   profilePicture: string;
   gender: string;
   countries: string;
-  agree: boolean;
-}
-
-interface state {
-  userCards: userCards[];
-  isModalOpen: boolean;
+  agreement: boolean;
 }
 
 export function Forms() {
-  const [state, setState] = useState([]);
+  const [state, setState] = useState<userCards[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm();
+  } = useForm<userCards>();
 
-  // state = {
-  //   userCards: [],
-  //   isModalOpen: false,
-  //   invalidForm: {
-  //     name: false,
-  //     birthday: false,
-  //     profilePicture: false,
-  //     agree: false,
-  //   },
-  // };
-
-  const onSubmit = (data: userCards) => {
-    setState([...state, data]);
-    // console.log('state', state);
-
-    // this.setState(() => ({
-    //   invalidForm: {
-    //     name:
-    //       this.nameInput.current!.value.toString() == '' ||
-    //       this.nameInput.current!.value.toString()[0] ==
-    //         this.nameInput.current!.value.toString()[0].toLowerCase(),
-    //     birthday: this.birthday.current!.value == '',
-    //     profilePicture: this.profilePicture.current!.value.toString() == '',
-    //     agree: this.agree.current!.checked == false,
-    //   },
-    // }));
-    // setTimeout((e: FormEvent<HTMLFormElement>) => this.validate(e), 0);
+  const onSubmit: SubmitHandler<userCards> = (data: userCards): void => {
+    const { agreement, birthday, countries, gender, nameInput, profilePicture }: userCards = data;
+    // console.log(URL.createObjectURL(profilePicture[0]).split('blob:')[1]);
+    setState([
+      ...state,
+      {
+        agreement: agreement,
+        birthday: birthday,
+        countries: countries,
+        gender: gender,
+        nameInput: nameInput,
+        profilePicture: profilePicture,
+      },
+    ]);
+    setIsModalOpen(true);
+    setTimeout(() => {
+      setIsModalOpen(true);
+      reset();
+    }, 2000);
   };
-
-  // validate(e: FormEvent<HTMLFormElement>) {
-  //   console.log(e);
-  //   if (!Object.values(this.state.invalidForm).filter((el) => el === true).length) {
-  //     this.setState((state: state) => ({
-  //       isModalOpen: true,
-  //       userCards: [
-  //         ...state.userCards,
-  //         {
-  //           name: this.nameInput.current!.value.toString(),
-  //           birthday: this.birthday.current!.value,
-  //           profilePicture: URL.createObjectURL(this.profilePicture.current!.files![0]),
-  //           gender: this.genderMale.current!.checked
-  //             ? this.genderMale.current!.value
-  //             : this.genderFemale.current!.value,
-  //           countries: this.countries.current!.value,
-  //           agree: this.agree.current!.checked,
-  //         },
-  //       ],
-  //     }));
-  //     setTimeout(() => {
-  //       // const target = e.target as HTMLFormElement;
-  //       // target?.reset();
-  //     }, 10);
-  //     setTimeout(() => {
-  //       this.setState(() => ({
-  //         isModalOpen: false,
-  //       }));
-  //     }, 2000);
-  //   }
-  // }
 
   return (
     <>
@@ -176,7 +133,7 @@ export function Forms() {
       </form>
 
       <UsersList props={state} />
-      {/* {state.isModalOpen && <SuccessMessage />} */}
+      {isModalOpen && <SuccessMessage />}
     </>
   );
 }
