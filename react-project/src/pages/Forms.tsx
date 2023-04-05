@@ -26,7 +26,6 @@ export function Forms() {
 
   const onSubmit: SubmitHandler<userCards> = (data: userCards): void => {
     const { agreement, birthday, countries, gender, nameInput, profilePicture }: userCards = data;
-    // console.log(URL.createObjectURL(profilePicture[0]).split('blob:')[1]);
     setState([
       ...state,
       {

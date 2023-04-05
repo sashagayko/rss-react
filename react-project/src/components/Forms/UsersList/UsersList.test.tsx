@@ -17,6 +17,6 @@ const user = [
 describe('ProductList', () => {
   it('render', () => {
     render(<UsersList props={user} />);
-    expect(screen.getByText('User')).toBeInTheDocument();
+    expect(screen.getByText('Users List')).toBeInTheDocument();
   });
 });

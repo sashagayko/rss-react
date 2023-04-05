@@ -16,10 +16,9 @@ interface userCards {
 }
 
 export default function UsersList(Users: Users) {
-  console.log('props', Users);
   return (
     <>
-      <div>User</div>
+      <div>Users List</div>
       {Users.props.map((userCards: userCards) => (
         <UserCard key={userCards.nameInput} {...userCards} />
       ))}
