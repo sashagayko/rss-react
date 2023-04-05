@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import classes from './searchInput.module.css';
-// React.Component<unknown, { input: string }>
+
 export function SearchInput() {
   const [inputValue, setInputValue] = useState<string>(localStorage.getItem('searchInput') || '');
 
