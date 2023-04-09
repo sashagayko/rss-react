@@ -17,3 +17,7 @@ export type Article = {
   url: string;
   urlToImage: string;
 };
+
+export type ResponseArticle = {
+  articles: Article[];
+};

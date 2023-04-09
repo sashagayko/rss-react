@@ -1,7 +1,8 @@
-import ProductList from '../components/ProductsList/ProductsList';
+import Articles from '../components/Articles/Articles';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { fetchData } from '../api/fetchData';
-import { Article } from '../types';
+import { Article, ResponseArticle } from '../types';
+import { AxiosResponse } from 'axios';
 
 export function Home() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -19,7 +20,8 @@ export function Home() {
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetchData(inputValue);
+      const response: AxiosResponse<ResponseArticle> = await fetchData(inputValue);
+      setArticles(response.data.articles);
       console.log(response.data.articles);
     } catch (error) {
       console.error(error);
@@ -32,7 +34,7 @@ export function Home() {
         <button type="submit">submit</button>
       </form>
       <h1>Home</h1>
-      <ProductList />
+      <Articles articles={articles} />
     </div>
   );
 }

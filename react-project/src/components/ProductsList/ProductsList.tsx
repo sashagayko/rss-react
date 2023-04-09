@@ -1,6 +1,6 @@
 import React from 'react';
 import products from '../../products.json';
-import ProductItem from '../product/ProductItem';
+import ProductItem from '../Articles/Articles';
 import './productList.css';
 
 export function ProductList() {
