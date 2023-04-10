@@ -36,3 +36,10 @@ input[type="radio"] {
   height:19px;
   display: inline-block;
 }
+
+.loading-icon {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
