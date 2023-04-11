@@ -18,13 +18,11 @@ export function Home() {
     setInputValue(target);
   };
 
-  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const getArticles = async () => {
     setIsLoading(true);
     try {
       const response: AxiosResponse<ResponseArticle> = await fetchData(inputValue);
       setArticles(response.data.articles);
-      console.log(response.data.articles);
     } catch (error) {
       console.error(error);
     } finally {
@@ -32,7 +30,16 @@ export function Home() {
     }
   };
 
-  handleSubmit;
+  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    getArticles();
+  };
+
+  useEffect(() => {
+    getArticles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -43,7 +50,7 @@ export function Home() {
         {isLoading && <img className="loading-icon" src="../../src/assets/loading.png"></img>}
       </form>
       <h1>Home</h1>
-      <Articles articles={articles} />
+      {articles.length ? <Articles articles={articles} /> : <h2>Not found articles</h2>}
     </div>
   );
 }
