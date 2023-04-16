@@ -6,3 +6,7 @@ const BASE_URL = `https://newsapi.org/v2/everything?q=`;
 export const fetchData = async (inputValue: string) => {
   return await axios.get(`${BASE_URL}${inputValue}&apiKey=${API_KEY}`);
 };
+
+// export const fetchOneArticle = async (inputValue: string) => {
+//   return await axios.get(`${BASE_URL}${inputValue}&apiKey=${API_KEY}`);
+// };
