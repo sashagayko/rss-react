@@ -21,3 +21,14 @@ export type Article = {
 export type ResponseArticle = {
   articles: Article[];
 };
+
+export type State = {
+  inputReducer: {
+    inputValue: string;
+  };
+};
+
+export type Action = {
+  payload: string;
+  type: string;
+};

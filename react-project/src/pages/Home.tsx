@@ -3,19 +3,20 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { fetchData } from '../api/fetchData';
 import { Article, ResponseArticle } from '../types';
 import { AxiosResponse } from 'axios';
+import { inputValueSelector } from '../store/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveValue } from '../store/actions';
 
 export function Home() {
   const [articles, setArticles] = useState<Article[]>([]);
-  const [inputValue, setInputValue] = useState<string>(localStorage.getItem('searchInput') || '');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    localStorage.setItem('searchInput', inputValue);
-  });
+  const inputValue = useSelector(inputValueSelector);
+  const dispatch = useDispatch();
+  console.log(inputValue);
 
   const save = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.target!.value;
-    setInputValue(target);
+    const target = e.target!.value.toString();
+    dispatch(saveValue(target));
   };
 
   const getArticles = async () => {

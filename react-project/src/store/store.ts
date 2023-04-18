@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, createStore, applyMiddleware } from '@reduxjs/toolkit';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { inputReducer } from './reducers';
 
-import rootReducer from 'redux';
-
-const store = configureStore({
-  reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== 'production',
+const rootReducer = combineReducers({
+  inputReducer: inputReducer,
 });
 
-export default store;
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
