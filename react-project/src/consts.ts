@@ -1,0 +1,1 @@
+export const SAVE_INPUT_VALUE = 'SAVE_INPUT_VALUE';
