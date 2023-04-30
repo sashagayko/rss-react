@@ -1,0 +1,16 @@
+.error-message {
+    width: 100%;
+    margin: 0 auto;
+    color: rgb(13, 19, 13);
+    font-size: 20px;
+    padding: 5px 10px;
+    background-color: rgb(219, 20, 20);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border-radius: 5px;
+}
+
+.error-message svg {
+    width: 20px;
+}

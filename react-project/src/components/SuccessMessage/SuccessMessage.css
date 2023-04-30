@@ -1,0 +1,18 @@
+.success-message {
+    position: fixed;
+    top: 23%;
+    color: rgb(13, 19, 13);
+    transform: translate(-50%);
+    left: 50%;
+    font-size: 40px;
+    padding: 6px 16px;
+    background-color: rgb(157, 216, 151);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 15px;
+}
+
+.success-message svg {
+    width: 40px;
+}
